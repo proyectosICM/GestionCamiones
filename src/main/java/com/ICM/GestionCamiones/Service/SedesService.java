@@ -1,4 +1,4 @@
-package com.ICM.GestionCamiones.Security;
+package com.ICM.GestionCamiones.Service;
 
 import com.ICM.GestionCamiones.Models.SedesModel;
 import com.ICM.GestionCamiones.Repositories.SedesRepository;
@@ -13,19 +13,19 @@ public class SedesService {
     @Autowired
     SedesRepository sedesRepository;
 
-    public List<SedesModel> ListarSedes(){
+    public List<SedesModel> GetAllSedes(){
         return sedesRepository.findAll();
     }
 
-    public Optional<SedesModel> ListarSedeId(Long id){
+    public Optional<SedesModel> GetSedeId(Long id){
         return sedesRepository.findById(id);
     }
 
-    public SedesModel CrearSede(SedesModel sedesModel){
+    public SedesModel CreateSede(SedesModel sedesModel){
         return sedesRepository.save(sedesModel);
     }
 
-    public SedesModel EditarSede(SedesModel sedesModel, Long id){
+    public SedesModel EditSede(SedesModel sedesModel, Long id){
         Optional<SedesModel> existing = sedesRepository.findById(id);
         if (existing.isPresent()){
             SedesModel sede = existing.get();
@@ -35,7 +35,7 @@ public class SedesService {
         return null;
     }
 
-    public void EliminarSede(Long id){
+    public void DeleteSede(Long id){
         sedesRepository.deleteById(id);
     }
 }

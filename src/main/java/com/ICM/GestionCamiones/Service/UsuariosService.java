@@ -1,4 +1,4 @@
-package com.ICM.GestionCamiones.Security;
+package com.ICM.GestionCamiones.Service;
 
 import com.ICM.GestionCamiones.Models.UsuariosModel;
 import com.ICM.GestionCamiones.Repositories.UsuariosRepository;
@@ -12,20 +12,24 @@ import java.util.Optional;
 public class UsuariosService {
     @Autowired
     UsuariosRepository usuariosRepository;
+    public Optional<UsuariosModel> ListarInfo(String username){
+        return usuariosRepository.findByUsername(username);
+    }
+    //CRUD
 
-    public List<UsuariosModel> ListarUsuarios(){
+    public List<UsuariosModel> GetUsers(){
         return usuariosRepository.findAll();
     }
 
-    public Optional<UsuariosModel> ListarUsuarioId(Long id){
+    public Optional<UsuariosModel> GetUserId(Long id){
         return usuariosRepository.findById(id);
     }
 
-    public UsuariosModel CrearUsuario(UsuariosModel usuariosModel){
+    public UsuariosModel CreateUser(UsuariosModel usuariosModel){
         return usuariosRepository.save(usuariosModel);
     }
 
-    public UsuariosModel EditarUsuario(UsuariosModel usuariosModel, Long id){
+    public UsuariosModel EditUser(UsuariosModel usuariosModel, Long id){
         Optional<UsuariosModel> existing = usuariosRepository.findById(id);
         if (existing.isPresent()){
             UsuariosModel usuario = existing.get();
@@ -39,7 +43,7 @@ public class UsuariosService {
         return null;
     }
 
-    public void EliminarUsuario(Long id){
+    public void DeleteUser(Long id){
         usuariosRepository.deleteById(id);
     }
 }

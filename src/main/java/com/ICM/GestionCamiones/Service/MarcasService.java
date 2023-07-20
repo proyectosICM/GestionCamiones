@@ -1,4 +1,4 @@
-package com.ICM.GestionCamiones.Security;
+package com.ICM.GestionCamiones.Service;
 
 import com.ICM.GestionCamiones.Models.MarcasModel;
 import com.ICM.GestionCamiones.Repositories.MarcasRepository;
@@ -13,19 +13,19 @@ public class MarcasService {
     @Autowired
     MarcasRepository marcasRepository;
     //CRUD
-    public List<MarcasModel> ListarMarcas(){
+    public List<MarcasModel> GetMarcas(){
         return marcasRepository.findAll();
     }
 
-    public Optional<MarcasModel> ListarMarcasId(Long id){
+    public Optional<MarcasModel> GetMarcasId(Long id){
         return marcasRepository.findById(id);
     }
 
-    public MarcasModel CrearMarca(MarcasModel marcasModel){
+    public MarcasModel CreateMarca(MarcasModel marcasModel){
         return marcasRepository.save(marcasModel);
     }
 
-    public MarcasModel EditarMarca(MarcasModel marcasModel, Long id){
+    public MarcasModel EditMarca(MarcasModel marcasModel, Long id){
         Optional<MarcasModel> existing = marcasRepository.findById(id);
         if(existing.isPresent()){
             MarcasModel marcas = existing.get();
@@ -35,7 +35,7 @@ public class MarcasService {
         return null;
     }
 
-    public void EliminarMarca(Long id){
+    public void DeleteMarca(Long id){
         marcasRepository.deleteById(id);
     }
 }

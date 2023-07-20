@@ -1,4 +1,4 @@
-package com.ICM.GestionCamiones.Security;
+package com.ICM.GestionCamiones.Service;
 
 import com.ICM.GestionCamiones.Models.CamionesModel;
 import com.ICM.GestionCamiones.Repositories.CamionesRepository;
@@ -15,19 +15,19 @@ public class CamionesService {
 
     // CRUD
 
-    public List<CamionesModel> ListarCamiones(){
+    public List<CamionesModel> GetCamion(){
         return camionesRepository.findAll();
     }
 
-    public Optional<CamionesModel> ListarCamionId(Long id){
+    public Optional<CamionesModel> GetCamionId(Long id){
         return camionesRepository.findById(id);
     }
 
-    public CamionesModel CrearCamion(CamionesModel camionesModel){
+    public CamionesModel CreateCamion(CamionesModel camionesModel){
         return camionesRepository.save(camionesModel);
     }
 
-    public CamionesModel EditarCamion(CamionesModel camionesModel, Long id){
+    public CamionesModel EditCamion(CamionesModel camionesModel, Long id){
         Optional<CamionesModel> existing = camionesRepository.findById(id);
         if(existing.isPresent()){
             CamionesModel camiones = existing.get();
@@ -40,8 +40,7 @@ public class CamionesService {
         }
         return null;
     }
-
-    public void EliminarCamion(Long id){
+    public void DeleteCamion(Long id){
         camionesRepository.deleteById(id);
     }
 

@@ -1,4 +1,4 @@
-package com.ICM.GestionCamiones.Security;
+package com.ICM.GestionCamiones.Service;
 
 import com.ICM.GestionCamiones.Models.TiposCModel;
 import com.ICM.GestionCamiones.Repositories.TiposCRepository;
@@ -13,19 +13,19 @@ public class TiposCService {
     @Autowired
     TiposCRepository tiposCRepository;
 
-    public List<TiposCModel> ListarTC(){
+    public List<TiposCModel> GetAllTC(){
         return tiposCRepository.findAll();
     }
 
-    public Optional<TiposCModel> ListarTCId(Long id){
+    public Optional<TiposCModel> GetTCId(Long id){
         return tiposCRepository.findById(id);
     }
 
-    public TiposCModel CrearTC(TiposCModel tiposCModel){
+    public TiposCModel CreateTC(TiposCModel tiposCModel){
         return tiposCRepository.save(tiposCModel);
     }
 
-    public TiposCModel EditarTC(TiposCModel tiposCModel, Long id){
+    public TiposCModel EditTC(TiposCModel tiposCModel, Long id){
         Optional<TiposCModel> existing = tiposCRepository.findById(id);
         if (existing.isPresent()){
             TiposCModel tipostc = existing.get();
@@ -35,7 +35,7 @@ public class TiposCService {
         return null;
     }
 
-    public void EliminarTC(Long id){
+    public void DeleteTC(Long id){
         tiposCRepository.deleteById(id);
     }
 }

@@ -1,4 +1,4 @@
-package com.ICM.GestionCamiones.Security;
+package com.ICM.GestionCamiones.Service;
 
 import com.ICM.GestionCamiones.Models.RolesModel;
 import com.ICM.GestionCamiones.Repositories.RolesRepository;
@@ -14,19 +14,19 @@ public class RolesService {
     RolesRepository rolesRepository;
 
     //CRUD
-    public List<RolesModel> ListarRoles(){
+    public List<RolesModel> GetAllRoles(){
         return rolesRepository.findAll();
     }
 
-    public Optional<RolesModel> ListarRolId(Long id){
+    public Optional<RolesModel> GetRolId(Long id){
         return rolesRepository.findById(id);
     }
 
-    public RolesModel CrearRol(RolesModel rolesModel){
+    public RolesModel CreaateRol(RolesModel rolesModel){
         return rolesRepository.save(rolesModel);
     }
 
-    public RolesModel EditarRol(RolesModel rolesModel, Long id){
+    public RolesModel EditRol(RolesModel rolesModel, Long id){
         Optional<RolesModel> existing =  rolesRepository.findById(id);
         if(existing.isPresent()){
             RolesModel rol = existing.get();
@@ -36,7 +36,7 @@ public class RolesService {
         return null;
     }
 
-    public void EliminarRol(Long id){
+    public void DeleteRol(Long id){
         rolesRepository.deleteById(id);
     }
 }

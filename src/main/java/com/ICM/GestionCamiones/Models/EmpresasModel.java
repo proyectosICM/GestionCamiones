@@ -1,6 +1,7 @@
 package com.ICM.GestionCamiones.Models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,15 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Sedes")
-public class SedesModel {
+@Table(name = "Empresas")
+public class EmpresasModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
+    @NotBlank
     private String nombre;
-
-    @ManyToOne
-    @JoinColumn(name = "empresa", referencedColumnName = "id", nullable = false)
-    private EmpresasModel empresasModel;
 }

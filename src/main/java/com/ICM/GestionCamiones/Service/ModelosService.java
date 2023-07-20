@@ -1,10 +1,9 @@
-package com.ICM.GestionCamiones.Security;
+package com.ICM.GestionCamiones.Service;
 
 import com.ICM.GestionCamiones.Models.ModelosModel;
 import com.ICM.GestionCamiones.Repositories.ModelosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,19 +13,19 @@ public class ModelosService {
     @Autowired
     ModelosRepository modelosRepository;
     //CRUD
-    public List<ModelosModel> ListarModelos(){
+    public List<ModelosModel> GetAllModelos(){
         return modelosRepository.findAll();
     }
 
-    public Optional<ModelosModel> ListarModeloId(Long id){
+    public Optional<ModelosModel> GetModeloId(Long id){
         return modelosRepository.findById(id);
     }
 
-    public ModelosModel CrearModelo(ModelosModel modelosModel){
+    public ModelosModel CreateModelo(ModelosModel modelosModel){
         return modelosRepository.save(modelosModel);
     }
 
-    public ModelosModel EditarModelo(ModelosModel modelosModel, Long id){
+    public ModelosModel EditModelo(ModelosModel modelosModel, Long id){
         Optional<ModelosModel> existing = modelosRepository.findById(id);
         if(existing.isPresent()){
             ModelosModel modelo = existing.get();
@@ -36,7 +35,7 @@ public class ModelosService {
         return null;
     }
 
-    public void EliminarModelo(Long id){
+    public void DeleteModelo(Long id){
         modelosRepository.deleteById(id);
     }
 }
