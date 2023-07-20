@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/tipoc")
+@RequestMapping("api/tiposc")
 public class TiposCController {
     @Autowired
     TiposCService tiposCService;
