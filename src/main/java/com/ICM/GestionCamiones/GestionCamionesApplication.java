@@ -36,7 +36,7 @@ public class GestionCamionesApplication {
 			UsuariosModel usuariosModel = UsuariosModel.builder()
 					.nombre("Eduardo")
 					.apellido("Aguilar")
-					.username("edas22")
+					.username("edas")
 					.password(passwordEncoder.encode("1234"))
 					.rolesModel(rol)
 					.empresasModel(empresa)
@@ -44,5 +44,5 @@ public class GestionCamionesApplication {
 			usuariosRepository.save(usuariosModel);
 		};
 	}
-	*/
+*/
 }
