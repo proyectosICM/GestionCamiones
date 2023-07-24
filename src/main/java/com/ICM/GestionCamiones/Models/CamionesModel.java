@@ -16,6 +16,7 @@ public class CamionesModel {
     @Column(unique = true, nullable = false)
     private Long id;
     private String placa;
+    private Boolean estado;
 
     @ManyToOne
     @JoinColumn(name = "tipoc", referencedColumnName = "id", nullable = false)

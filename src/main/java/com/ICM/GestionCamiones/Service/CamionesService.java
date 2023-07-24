@@ -1,6 +1,7 @@
 package com.ICM.GestionCamiones.Service;
 
 import com.ICM.GestionCamiones.Models.CamionesModel;
+import com.ICM.GestionCamiones.Models.EmpresasModel;
 import com.ICM.GestionCamiones.Repositories.CamionesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,11 @@ public class CamionesService {
     @Autowired
     CamionesRepository camionesRepository;
 
-    // CRUD
+    public List<CamionesModel>ListarCamionesxEmpresaEst(EmpresasModel empresasModel, Boolean estado){
+        return camionesRepository.findByEmpresasModelAndEstado(empresasModel, estado);
+    }
 
+    // CRUD
     public List<CamionesModel> GetCamion(){
         return camionesRepository.findAll();
     }

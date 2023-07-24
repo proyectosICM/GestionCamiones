@@ -1,6 +1,7 @@
 package com.ICM.GestionCamiones.Controllers;
 
 import com.ICM.GestionCamiones.Models.CamionesModel;
+import com.ICM.GestionCamiones.Models.EmpresasModel;
 import com.ICM.GestionCamiones.Service.CamionesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,14 @@ public class CamionesController {
     @Autowired
     CamionesService camionesService;
 
+    @GetMapping("estado/{estado}/{id}")
+    public List<CamionesModel> GetCamEmpxEst(@PathVariable Boolean estado, @PathVariable Long id){
+        EmpresasModel empresa = new EmpresasModel();
+        empresa.setId(id);
+        return camionesService.ListarCamionesxEmpresaEst(empresa, estado);
+    }
+
+    //CRUD
     @GetMapping
     public List<CamionesModel> GetAllCamiones(){
         return camionesService.GetCamion();
