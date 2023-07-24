@@ -41,7 +41,7 @@ public class WebSecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Especificar los orígenes permitidos
+        configuration.setAllowedOrigins(Arrays.asList("*")); // Especificar los orígenes permitidos
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT")); // Especificar los métodos HTTP permitidos
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Especificar los encabezados permitidos
         configuration.setAllowCredentials(true); // Permitir el envío de credenciales
@@ -78,6 +78,11 @@ public class WebSecurityConfig {
                 .exceptionHandling().disable()
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/hola").permitAll();
+                    auth.requestMatchers("/unprotected").permitAll();
+                    auth.requestMatchers("/unprotected").permitAll();
+                    auth.requestMatchers("/redirigido").permitAll();
+                    auth.requestMatchers("/saludof").permitAll();
+                    auth.requestMatchers("/get-ip").permitAll();
                     auth.requestMatchers("/login").permitAll();
                     auth.requestMatchers("/swagger-ui/**").permitAll();
                     auth.requestMatchers("/doc/**").permitAll();
