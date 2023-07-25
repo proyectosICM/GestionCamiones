@@ -20,6 +20,7 @@ public class CheckListAvanzado {
     private Boolean pruebaArranque;
     private Boolean funcionamientoTablero;
     private Boolean presionFrenos;
+    private Boolean presionSuspencion;
     private Boolean cargaAlternador;
     private Boolean frenoMotor;
     private Boolean giroTimon;
@@ -48,5 +49,30 @@ public class CheckListAvanzado {
     private Boolean filtroRecirculacionAire;
     private Boolean estanqueidadMotor;
     private Boolean filtroAceiteMotor;
+
+    //Revision de la parte baja, posterior del tracto y carreta
+    private Boolean ajusteTapon;
+    private Boolean holguraTerminales;
+    private Boolean suspensionDelantera;
+    private Boolean descarteFugaAire;
+    private Boolean descarteFugaAceite;
+    private Boolean suspensionPosterior;
+    private Boolean inspeccionZapatas;
+    private Boolean estadoRachet;
+    private Boolean suspensionNeumatica;
+    private Boolean tandem;
+    private Boolean chasisYPuentes;
+    private Boolean estadoSilenciador;
+    private Boolean tornamesa;
+    private Boolean manparones;
+    private Boolean visualNeumaticos;
+    private Boolean visualEmisores;
+    private Boolean funcionamientoLuces;
+    private Boolean cortinasFurgon;
+    private Boolean cintaReflectiva;
+    private Boolean placasRodaje;
+    private Boolean seguroCargar;
+    private Boolean mecanismoCortinas;
+    private Boolean estructuraSemiremolque;
 
 }
