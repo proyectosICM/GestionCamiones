@@ -2,6 +2,7 @@ package com.ICM.GestionCamiones.Controllers;
 
 import com.ICM.GestionCamiones.Models.CamionesModel;
 import com.ICM.GestionCamiones.Models.EmpresasModel;
+import com.ICM.GestionCamiones.Models.SedesModel;
 import com.ICM.GestionCamiones.Service.CamionesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,28 @@ public class CamionesController {
         EmpresasModel empresa = new EmpresasModel();
         empresa.setId(id);
         return camionesService.ListarCamionesxEmpresaEst(empresa, estado);
+    }
+
+    @GetMapping("/xsede/{empresaid}/{sedeid}/{estado}")
+    public List<CamionesModel> GetCamEmpSede(@PathVariable Long empresaid, @PathVariable Long sedeid, @PathVariable Boolean estado){
+        EmpresasModel empresa = new EmpresasModel();
+        empresa.setId(empresaid);
+
+        SedesModel sedes = new SedesModel();
+        sedes.setId(sedeid);
+
+        return camionesService.ListarxEmpresaxSedexEstado(empresa, sedes, estado);
+    }
+
+    @GetMapping("/xsede-reparacion/{empresaid}/{sedeid}/{estado}/{enreparacion}")
+    public List<CamionesModel> GetCamEmpSedeRep(@PathVariable Long empresaid, @PathVariable Long sedeid, @PathVariable Boolean estado, @PathVariable Boolean enreparacion){
+        EmpresasModel empresa = new EmpresasModel();
+        empresa.setId(empresaid);
+
+        SedesModel sedes = new SedesModel();
+        sedes.setId(sedeid);
+
+        return camionesService.ListarxEmpresaxSedexEstadoxReparacion(empresa, sedes, estado, enreparacion);
     }
 
     //CRUD

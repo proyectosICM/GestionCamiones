@@ -2,6 +2,7 @@ package com.ICM.GestionCamiones;
 
 import com.ICM.GestionCamiones.Models.EmpresasModel;
 import com.ICM.GestionCamiones.Models.RolesModel;
+import com.ICM.GestionCamiones.Models.SedesModel;
 import com.ICM.GestionCamiones.Models.UsuariosModel;
 import com.ICM.GestionCamiones.Repositories.UsuariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class GestionCamionesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GestionCamionesApplication.class, args);
 	}
-/*
+
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
@@ -33,16 +34,20 @@ public class GestionCamionesApplication {
 			RolesModel rol = new RolesModel();
 			rol.setId(1L);
 
-			UsuariosModel usuariosModel = UsuariosModel.builder()
+			SedesModel sede = new SedesModel();
+			sede.setId(4L);
+
+			UsuariosModel usuariosModel  = UsuariosModel.builder()
 					.nombre("Eduardo")
 					.apellido("Aguilar")
-					.username("edas")
+					.username("admin")
 					.password(passwordEncoder.encode("1234"))
 					.rolesModel(rol)
 					.empresasModel(empresa)
+					.sedesModel(sede)
 					.build();
 			usuariosRepository.save(usuariosModel);
 		};
 	}
-*/
+
 }

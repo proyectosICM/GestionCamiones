@@ -32,4 +32,8 @@ public class UsuariosModel {
     @ManyToOne
     @JoinColumn(name = "empresa", referencedColumnName = "id", nullable = false)
     private EmpresasModel empresasModel;
+
+    @ManyToOne
+    @JoinColumn(name = "sede", referencedColumnName = "id", nullable = false)
+    private SedesModel sedesModel;
 }

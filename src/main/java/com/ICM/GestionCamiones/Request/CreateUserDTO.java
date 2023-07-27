@@ -17,4 +17,5 @@ public class CreateUserDTO {
     private String apellido;
     private Long roles;
     private Long empresa;
+    private Long sede;
 }

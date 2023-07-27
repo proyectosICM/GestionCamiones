@@ -38,6 +38,7 @@ public class UsuariosService {
             usuario.setNombre(usuariosModel.getNombre());
             usuario.setApellido(usuariosModel.getApellido());
             usuario.setRolesModel(usuariosModel.getRolesModel());
+            usuario.setSedesModel(usuariosModel.getSedesModel());
             return usuariosRepository.save(usuario);
         }
         return null;
