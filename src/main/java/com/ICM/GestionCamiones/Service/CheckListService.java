@@ -13,12 +13,23 @@ import java.util.Optional;
 public class CheckListService {
     @Autowired
     CheckListRepository checkListRepository;
-    public Optional<CheckListModel> Listarxid(Long id){
-        return checkListRepository.findById(id);
-    }
+
     public List<CheckListModel> ListarxCamion(Long id){
         CamionesModel camionesModel = new CamionesModel();
         camionesModel.setId(id);
         return checkListRepository.findByCamionesModel(camionesModel);
+    }
+
+    //CRUD
+    public List<CheckListModel> GetAllCheckLists(){
+        return checkListRepository.findAll();
+    }
+
+    public Optional<CheckListModel> Listarxid(Long id){
+        return checkListRepository.findById(id);
+    }
+
+    public CheckListModel GuardarCheckList(CheckListModel checkListModel){
+        return checkListRepository.save(checkListModel);
     }
 }

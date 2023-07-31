@@ -1,6 +1,5 @@
 package com.ICM.GestionCamiones.Models;
 
-import com.ICM.GestionCamiones.Models.CheckList.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,49 +15,64 @@ public class CheckListModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-    // Llantas
-    @ManyToOne
-    @JoinColumn(name = "Llantas", referencedColumnName = "id", nullable = false)
-    private Llantas llantas;
+
+    //Llantas
+    private Boolean RevisarAjuste;
+    private Boolean CortesYAverias;
+    private Boolean RevisarPresionRecomendada;
 
     //Motor
-    @ManyToOne
-    @JoinColumn(name = "Motor", referencedColumnName = "id", nullable = false)
-    private Motor motor;
+    private Boolean NivelesDeMotor;
+    private Boolean SistemaDeLubricacionDeFugas;
+    private Boolean SistemaDeCombustible;
+
 
     // Sistema Electrico
-    @ManyToOne
-    @JoinColumn(name = "Sistemaelectrico", referencedColumnName = "id", nullable = false)
-    private SistemaElectrico sistemaElectrico;
+    private Boolean  Luces;
+    private Boolean SistemaDeCarga;
+    private Boolean MandosTablero;
+    private Boolean SistemaDeArranque;
+    private Boolean RuidosAnormalesSE;
+    private Boolean OtrosEquiposElectricos;
 
     //Transmision
-    @ManyToOne
-    @JoinColumn(name = "Transmision", referencedColumnName = "id", nullable = false)
-    private Transmision transmision ;
+    private Boolean Embrague;
+    private Boolean CajaDeCambio;
+    private Boolean Diferencial;
+    private Boolean Cardanes;
+    private Boolean RuidosAnormalesT;
 
     // Direccion
-    @ManyToOne
-    @JoinColumn(name = "Direccion", referencedColumnName = "id", nullable = false)
-    private Direccion direccion;
+    private Boolean Seryo;
+    private Boolean Alineamiento;
+    private Boolean PinesBocinasTerminales;
+    private Boolean CajaDeDirecion;
 
 
     // Frenos
-    @ManyToOne
-    @JoinColumn(name = "Frenos", referencedColumnName = "id", nullable = false)
-    private Frenos frenos;
+    private Boolean LimpiezaYRegulacion;
+    private Boolean PresionDeAire;
+    private Boolean FrenoDeEstacionamiento;
 
     // Suspension
-    @ManyToOne
-    @JoinColumn(name = "Suspension", referencedColumnName = "id", nullable = false)
-    private Suspension suspension;
+    private Boolean MuellesBolsasdeAire;
+    private Boolean Amortiguadores;
+    private Boolean EjesBarraEstabilizadora;
 
 
     // Cabina
-    @ManyToOne
-    @JoinColumn(name = "Cabina", referencedColumnName = "id", nullable = false)
-    private Cabina cabina;
+    private Boolean Carroceria;
+    private Boolean Chasis;
+
     // Camion
     @ManyToOne
     @JoinColumn(name = "Camion", referencedColumnName = "id", nullable = false)
     private CamionesModel camionesModel;
+
+    // Usuarios
+    @ManyToOne
+    @JoinColumn(name = "Conductor", referencedColumnName = "id", nullable = false)
+    private UsuariosModel usuariosModel;
+
+    private Integer tiempo;
 }
