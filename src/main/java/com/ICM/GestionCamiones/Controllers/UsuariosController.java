@@ -38,7 +38,7 @@ public class UsuariosController {
     @GetMapping("/{id}")
     public ResponseEntity<UsuariosModel> GetUserId(@PathVariable Long id){
         Optional<UsuariosModel> user = usuariosService.GetUserId(id);
-        if (user.isEmpty()){
+        if (user.isPresent()){
             return new ResponseEntity<>(user.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "CheckListAvanzado")
+@Table(name = "CheckCamionA")
 public class CheckListAvanzado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

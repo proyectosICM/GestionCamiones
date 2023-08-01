@@ -18,7 +18,7 @@ public class GestionCamionesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GestionCamionesApplication.class, args);
 	}
-
+/*
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
@@ -49,5 +49,5 @@ public class GestionCamionesApplication {
 			usuariosRepository.save(usuariosModel);
 		};
 	}
-
+*/
 }

@@ -36,4 +36,8 @@ public class UsuariosModel {
     @ManyToOne
     @JoinColumn(name = "sede", referencedColumnName = "id", nullable = false)
     private SedesModel sedesModel;
+
+    @ManyToOne
+    @JoinColumn(name = "camion", referencedColumnName = "id", nullable = true)
+    private CamionesModel camionesModel;
 }

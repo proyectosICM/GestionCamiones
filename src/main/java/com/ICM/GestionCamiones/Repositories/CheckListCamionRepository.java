@@ -1,13 +1,13 @@
 package com.ICM.GestionCamiones.Repositories;
 
 import com.ICM.GestionCamiones.Models.CamionesModel;
-import com.ICM.GestionCamiones.Models.CheckListModel;
+import com.ICM.GestionCamiones.Models.CheckListCamionModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface CheckListRepository extends JpaRepository<CheckListModel, Long> {
-    List<CheckListModel> findByCamionesModel(CamionesModel camionesModel);
+public interface CheckListCamionRepository extends JpaRepository<CheckListCamionModel, Long> {
+    List<CheckListCamionModel> findByCamionesModel(CamionesModel camionesModel);
 }
