@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/checkList")
+@RequestMapping("api/checkListCamion")
 public class CheckListCamionController {
     @Autowired
     CheckListCamionService checkListCamionService;
