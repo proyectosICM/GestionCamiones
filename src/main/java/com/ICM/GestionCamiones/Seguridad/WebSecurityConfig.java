@@ -91,6 +91,7 @@ public class WebSecurityConfig {
                     auth.requestMatchers("/unprotected").permitAll();
                     auth.requestMatchers("/unprotected").permitAll();
                     auth.requestMatchers("/redirigido").permitAll();
+                    auth.requestMatchers("/api/imagen/**").permitAll();
                     auth.requestMatchers("/saludof").permitAll();
                     auth.requestMatchers("/get-ip").permitAll();
                     auth.requestMatchers("/login").permitAll();
