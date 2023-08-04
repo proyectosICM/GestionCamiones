@@ -1,5 +1,6 @@
 package com.ICM.GestionCamiones.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -37,11 +38,10 @@ public class UsuariosModel {
     @JoinColumn(name = "sede", referencedColumnName = "id", nullable = false)
     private SedesModel sedesModel;
 
-    @ManyToOne
-    @JoinColumn(name = "camion", referencedColumnName = "id", nullable = true)
-    private CamionesModel camionesModel;
 
     @ManyToOne
-    @JoinColumn(name = "carreta", referencedColumnName = "id", nullable = true)
-    private CamionesModel carreta;
+    @JoinColumn(name = "rgs", referencedColumnName = "id", nullable = true)
+    private RGS_Model rgsModel;
+
+
 }

@@ -38,10 +38,5 @@ public class CheckListCarretaModel {
     @JoinColumn(name = "Camion", referencedColumnName = "id", nullable = false)
     private CamionesModel camionesModel;
 
-    // Usuarios
-    @ManyToOne
-    @JoinColumn(name = "Conductor", referencedColumnName = "id", nullable = false)
-    private UsuariosModel usuariosModel;
-
     private Integer tiempo;
 }

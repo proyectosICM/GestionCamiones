@@ -48,7 +48,9 @@ public class WebSecurityConfig {
                 "http://192.168.1.232:3000",
                 "http://192.168.1.158",         // Agrega esta URL
                 "http://192.168.1.158:19000",   // Agrega esta URL
-                "http://192.168.1.158:3000"     // Agrega esta URL
+                "http://192.168.1.158:3000",
+                "http://192.168.1.35",
+                "http://192.168.1.35:3000"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT")); // Especificar los métodos HTTP permitidos
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Especificar los encabezados permitidos

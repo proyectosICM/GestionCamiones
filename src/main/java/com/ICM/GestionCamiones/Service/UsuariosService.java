@@ -46,8 +46,9 @@ public class UsuariosService {
             usuario.setRolesModel(usuariosModel.getRolesModel());
             usuario.setSedesModel(usuariosModel.getSedesModel());
             if(usuario.getRolesModel().getId() == 1L) {
-                usuario.setCamionesModel(usuariosModel.getCamionesModel());
-                usuario.setCarreta(usuariosModel.getCarreta());
+                //usuario.setCamionesModel(usuariosModel.getCamionesModel());
+                //usuario.setCarreta(usuariosModel.getCarreta());
+                usuario.setRgsModel(usuariosModel.getRgsModel());
             }
             return usuariosRepository.save(usuario);
         }
