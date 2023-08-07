@@ -17,6 +17,12 @@ public class RGS_Controller {
     @Autowired
     RGS_Service rgsService;
 
+    @GetMapping("/xempresa-sede/{empresa}/{sede}/{estado}")
+    public List<RGS_Model> GetxEmpresaXSede(@PathVariable Long empresa, @PathVariable Long sede, @PathVariable Boolean estado){
+        return rgsService.getxEmpresaAndxSede(empresa, sede, estado);
+    }
+
+    // CRUD
     @GetMapping
     public List<RGS_Model> GetAllRGS(){
         return rgsService.getAllRgsModel();
