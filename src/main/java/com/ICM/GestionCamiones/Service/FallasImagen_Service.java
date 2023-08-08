@@ -25,4 +25,15 @@ public class FallasImagen_Service {
     public FallasImagen_Model CreateErrorImage(FallasImagen_Model fallasImagenModel){
         return fallasImagenRepository.save(fallasImagenModel);
     }
+
+    public FallasImagen_Model EditErrorImage(Long id, FallasImagen_Model fallasImagenModel){
+        Optional<FallasImagen_Model> existing = fallasImagenRepository.findById(id);
+        if(existing.isPresent()){
+            FallasImagen_Model errorImage = existing.get();
+            errorImage.setObservacion(fallasImagenModel.getObservacion());
+            errorImage.setRgsModel(fallasImagenModel.getRgsModel());
+            return fallasImagenRepository.save(errorImage);
+        }
+        return null;
+    }
 }

@@ -23,4 +23,8 @@ public class RGS_Model {
     @ManyToOne
     @JoinColumn(name = "clcarrcond", referencedColumnName = "id", nullable = true)
     private CheckListCarretaModel checkListCarretaModel;
+
+    @ManyToOne
+    @JoinColumn(name = "clexpreso", referencedColumnName = "id", nullable = true)
+    private CheckListExpresoModel checkListExpresoModel;
 }

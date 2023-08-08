@@ -42,4 +42,13 @@ public class RGS_Controller {
         RGS_Model cRGS = rgsService.saveRgs(rgsModel);
         return new ResponseEntity<>(cRGS, HttpStatus.CREATED);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<RGS_Model> EditRgs(@PathVariable Long id, @RequestBody RGS_Model rgsModel){
+        RGS_Model ergs = rgsService.EditRgs(id, rgsModel);
+        if(ergs!=null){
+            return new ResponseEntity<>(ergs, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }

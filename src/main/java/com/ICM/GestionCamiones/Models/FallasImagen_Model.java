@@ -23,6 +23,6 @@ public class FallasImagen_Model {
     private UsuariosModel usuariosModel;
 
     @ManyToOne
-    @JoinColumn(name = "RGS", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "RGS", referencedColumnName = "id", nullable = true)
     private RGS_Model rgsModel;
 }

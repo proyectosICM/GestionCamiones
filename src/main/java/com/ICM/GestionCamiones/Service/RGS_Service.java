@@ -70,4 +70,16 @@ public class RGS_Service {
         return rgsRepository.save(rgsModel);
     }
 
+    public RGS_Model EditRgs(Long id, RGS_Model rgsModel){
+        Optional<RGS_Model> existing = rgsRepository.findById(id);
+
+        if(existing.isPresent()){
+            RGS_Model rgs= existing.get();
+            rgs.setCheckListExpresoModel(rgsModel.getCheckListExpresoModel());
+            rgs.setCheckListCarretaModel(rgsModel.getCheckListCarretaModel());
+            return rgsRepository.save(rgs);
+        }
+        return null;
+    }
+
 }

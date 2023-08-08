@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "CheckCamionA")
-public class CheckListAvanzado {
+@Table(name = "CheckListExpreso")
+public class CheckListExpresoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
@@ -74,5 +74,4 @@ public class CheckListAvanzado {
     private Boolean seguroCargar;
     private Boolean mecanismoCortinas;
     private Boolean estructuraSemiremolque;
-
 }
