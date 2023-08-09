@@ -7,8 +7,6 @@ import com.ICM.GestionCamiones.Repositories.RGS_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,29 +50,30 @@ public class RGS_Service {
     }
     */
 
-    public List<RGS_Model> getxEmpresaAndxSede(Long empresaid, Long sedeid, Boolean estado) {
+    public List<RGSModel> getxEmpresaAndxSede(Long empresaid, Long sedeid, Boolean estado) {
         return rgsRepository.findByCheckListCamionModel_CamionesModel_EmpresasModel_IdAndCheckListCamionModel_CamionesModel_SedesModel_IdAndCheckListCamionModel_CamionesModel_Estado(empresaid, sedeid, estado);
     }
 
     //CRUD
 
-    public List<RGS_Model> getAllRgsModel() {
+    public List<RGSModel> getAllRgsModel() {
         return rgsRepository.findAll();
     }
 
-    public Optional<RGS_Model> getIdRgs(Long id){
+    public Optional<RGSModel> getIdRgs(Long id){
         return rgsRepository.findById(id);
     }
 
-    public RGS_Model saveRgs(RGS_Model rgsModel){
+    public RGSModel saveRgs(RGSModel rgsModel){
         return rgsRepository.save(rgsModel);
     }
 
-    public RGS_Model EditRgs(Long id, RGS_Model rgsModel){
-        Optional<RGS_Model> existing = rgsRepository.findById(id);
+    public RGSModel EditRgs(Long id, RGSModel rgsModel){
+        Optional<RGSModel> existing = rgsRepository.findById(id);
 
         if(existing.isPresent()){
-            RGS_Model rgs= existing.get();
+            RGSModel rgs= existing.get();
+            rgs.setCheckListCamionModel(rgsModel.getCheckListCamionModel());
             rgs.setCheckListExpresoModel(rgsModel.getCheckListExpresoModel());
             rgs.setCheckListCarretaModel(rgsModel.getCheckListCarretaModel());
             return rgsRepository.save(rgs);

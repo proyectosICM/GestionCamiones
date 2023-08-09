@@ -1,6 +1,7 @@
 package com.ICM.GestionCamiones.Service;
 
 import com.ICM.GestionCamiones.Models.FallasImagen_Model;
+import com.ICM.GestionCamiones.Models.RGSModel;
 import com.ICM.GestionCamiones.Repositories.FallasImagen_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,14 @@ import java.util.Optional;
 public class FallasImagen_Service {
     @Autowired
     FallasImagen_Repository fallasImagenRepository;
+
+    public List<FallasImagen_Model> GetbugImagexRGS(Long idRgs){
+        RGSModel rgs = new RGSModel();
+        rgs.setId(idRgs);
+        return fallasImagenRepository.findByRgsModel(rgs);
+    }
+
+    //CRUD
 
     public List<FallasImagen_Model> GetAllBugImages(){
         return fallasImagenRepository.findAll();

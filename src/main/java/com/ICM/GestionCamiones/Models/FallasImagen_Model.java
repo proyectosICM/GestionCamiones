@@ -24,5 +24,7 @@ public class FallasImagen_Model {
 
     @ManyToOne
     @JoinColumn(name = "RGS", referencedColumnName = "id", nullable = true)
-    private RGS_Model rgsModel;
+    private RGSModel rgsModel;
+
+
 }

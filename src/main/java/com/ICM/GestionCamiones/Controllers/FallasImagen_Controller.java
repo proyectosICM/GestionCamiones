@@ -1,6 +1,7 @@
 package com.ICM.GestionCamiones.Controllers;
 
 import com.ICM.GestionCamiones.Models.FallasImagen_Model;
+import com.ICM.GestionCamiones.Models.RGSModel;
 import com.ICM.GestionCamiones.Repositories.FallasImagen_Repository;
 import com.ICM.GestionCamiones.Service.FallasImagen_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,11 @@ public class FallasImagen_Controller {
     @Autowired
     FallasImagen_Service fallasImagenService;
 
+    @GetMapping("/xrgs/{id}")
+    public List<FallasImagen_Model> GetbugImagexRGS(@PathVariable Long id){
+        return fallasImagenService.GetbugImagexRGS(id);
+    }
+    //CRUD
     @GetMapping
     public List<FallasImagen_Model> GetAllBugImages(){
         return fallasImagenService.GetAllBugImages();

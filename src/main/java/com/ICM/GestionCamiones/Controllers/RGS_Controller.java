@@ -1,8 +1,7 @@
 package com.ICM.GestionCamiones.Controllers;
 
-import com.ICM.GestionCamiones.Models.RGS_Model;
+import com.ICM.GestionCamiones.Models.RGSModel;
 import com.ICM.GestionCamiones.Service.RGS_Service;
-import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,19 +17,21 @@ public class RGS_Controller {
     RGS_Service rgsService;
 
     @GetMapping("/xempresa-sede/{empresa}/{sede}/{estado}")
-    public List<RGS_Model> GetxEmpresaXSede(@PathVariable Long empresa, @PathVariable Long sede, @PathVariable Boolean estado){
+    public List<RGSModel> GetxEmpresaXSede(@PathVariable Long empresa, @PathVariable Long sede, @PathVariable Boolean estado){
         return rgsService.getxEmpresaAndxSede(empresa, sede, estado);
     }
 
+
+
     // CRUD
     @GetMapping
-    public List<RGS_Model> GetAllRGS(){
+    public List<RGSModel> GetAllRGS(){
         return rgsService.getAllRgsModel();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RGS_Model> GetIdRGS(@PathVariable Long id ){
-        Optional<RGS_Model> cRGS = rgsService.getIdRgs(id);
+    public ResponseEntity<RGSModel> GetIdRGS(@PathVariable Long id ){
+        Optional<RGSModel> cRGS = rgsService.getIdRgs(id);
         if(cRGS.isPresent()){
             return new ResponseEntity<>(cRGS.get(), HttpStatus.OK);
         }
@@ -38,14 +39,14 @@ public class RGS_Controller {
     }
 
     @PostMapping
-    public ResponseEntity<RGS_Model> CreateIdRGS(@RequestBody RGS_Model rgsModel){
-        RGS_Model cRGS = rgsService.saveRgs(rgsModel);
+    public ResponseEntity<RGSModel> CreateIdRGS(@RequestBody RGSModel rgsModel){
+        RGSModel cRGS = rgsService.saveRgs(rgsModel);
         return new ResponseEntity<>(cRGS, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RGS_Model> EditRgs(@PathVariable Long id, @RequestBody RGS_Model rgsModel){
-        RGS_Model ergs = rgsService.EditRgs(id, rgsModel);
+    public ResponseEntity<RGSModel> EditRgs(@PathVariable Long id, @RequestBody RGSModel rgsModel){
+        RGSModel ergs = rgsService.EditRgs(id, rgsModel);
         if(ergs!=null){
             return new ResponseEntity<>(ergs, HttpStatus.OK);
         }

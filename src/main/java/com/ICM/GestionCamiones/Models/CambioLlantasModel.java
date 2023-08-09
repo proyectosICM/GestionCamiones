@@ -25,5 +25,5 @@ public class CambioLlantasModel {
 
     @ManyToOne
     @JoinColumn(name = "cambioLlantas", referencedColumnName = "id", nullable = false)
-    private RGS_Model rgsModel;
+    private RGSModel rgsModel;
 }
