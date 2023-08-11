@@ -41,7 +41,7 @@ public class WebSecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-
+/*
         configuration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:3000",
                 "http://192.168.1.232",
@@ -52,6 +52,10 @@ public class WebSecurityConfig {
                 "http://192.168.1.35",
                 "http://192.168.1.35:3000"
         ));
+        */
+
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT")); // Especificar los métodos HTTP permitidos
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Especificar los encabezados permitidos
         configuration.setAllowCredentials(true); // Permitir el envío de credenciales

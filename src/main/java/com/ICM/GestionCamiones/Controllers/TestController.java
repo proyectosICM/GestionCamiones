@@ -35,18 +35,26 @@ public class TestController {
     }
     @GetMapping("/redirigido")
     public void redirigido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Aquí puedes obtener los parámetros de usuario y contraseña desde la solicitud
-        // Los parámetros @RequestParam se obtienen directamente de la solicitud
         String ipAddress = request.getRemoteAddr();
+
         // Luego, reenvía la solicitud al controlador protegido /saludof
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/saludof");
+        request.setAttribute("direccionadoDesdeServidor", true);
         requestDispatcher.forward(request, response);
     }
 
     @GetMapping("/saludof")
-    public String Saludof(HttpServletRequest request){
+    public String saludof(HttpServletRequest request) {
         String ipAddress = request.getRemoteAddr();
-        return "saludo ya" + ipAddress;
+
+        // Verificar si la redirección se realizó desde el servidor
+        boolean direccionadoDesdeServidor = Boolean.parseBoolean(request.getAttribute("direccionadoDesdeServidor").toString());
+
+        if (direccionadoDesdeServidor) {
+            return "saludo desde el servidor para " + ipAddress;
+        } else {
+            return "saludo desde el cliente para " + ipAddress;
+        }
     }
 }
 
