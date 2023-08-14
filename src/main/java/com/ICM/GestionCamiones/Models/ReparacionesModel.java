@@ -9,16 +9,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "FallasImagen")
-public class FallasImagen_Model {
+@Table(name = "Reparaciones")
+public class ReparacionesModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-
-    @Column(nullable = false)
+    private String titulo;
     private String urlImage;
-    private String observacion;
 
     @ManyToOne
     @JoinColumn(name = "usuario", referencedColumnName = "id", nullable = false)
@@ -27,6 +25,4 @@ public class FallasImagen_Model {
     @ManyToOne
     @JoinColumn(name = "RGS", referencedColumnName = "id", nullable = true)
     private RGSModel rgsModel;
-
-
 }

@@ -27,4 +27,10 @@ public class RGSModel {
     @ManyToOne
     @JoinColumn(name = "clexpreso", referencedColumnName = "id", nullable = true)
     private CheckListExpresoModel checkListExpresoModel;
+
+    @Column(nullable = false)
+    private Boolean estado;
+
+    @Column(nullable = false)
+    private Boolean reparacion;
 }
