@@ -54,7 +54,7 @@ public class WebSecurityConfig {
         ));
         */
 
-        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
 
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT")); // Especificar los métodos HTTP permitidos
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Especificar los encabezados permitidos
@@ -92,6 +92,7 @@ public class WebSecurityConfig {
                 .exceptionHandling().disable()
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/hola").permitAll();
+                    auth.requestMatchers("/api/camiones").permitAll();
                     auth.requestMatchers("/unprotected").permitAll();
                     auth.requestMatchers("/unprotected").permitAll();
                     auth.requestMatchers("/redirigido").permitAll();

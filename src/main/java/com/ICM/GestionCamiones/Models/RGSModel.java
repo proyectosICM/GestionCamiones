@@ -33,4 +33,7 @@ public class RGSModel {
 
     @Column(nullable = false)
     private Boolean reparacion;
+
+    private Integer kilometrajeCamion;
+    private Integer kilometrajeCarreta;
 }
