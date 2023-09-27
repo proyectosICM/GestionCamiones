@@ -35,12 +35,12 @@ public class GestionCamionesApplication {
 			rol.setId(1L);
 
 			SedesModel sede = new SedesModel();
-			sede.setId(1L);
+			sede.setId(3L);
 
 			UsuariosModel usuariosModel  = UsuariosModel.builder()
 					.nombre("Eduardo")
 					.apellido("Aguilar")
-					.username("cond3")
+					.username("admin")
 					.password(passwordEncoder.encode("1234"))
 					.rolesModel(rol)
 					.empresasModel(empresa)

@@ -7,6 +7,8 @@ import com.ICM.GestionCamiones.Repositories.RGS_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,7 +53,12 @@ public class RGS_Service {
     */
 
     public List<RGSModel> getxEmpresaAndxSede(Long empresaid, Long sedeid, Boolean estado) {
-        return rgsRepository.findByCheckListCamionModel_CamionesModel_EmpresasModel_IdAndCheckListCamionModel_CamionesModel_SedesModel_IdAndCheckListCamionModel_CamionesModel_Estado(empresaid, sedeid, estado);
+        List<RGSModel> resultados = rgsRepository.findByCheckListCamionModel_CamionesModel_EmpresasModel_IdAndCheckListCamionModel_CamionesModel_SedesModel_IdAndCheckListCamionModel_CamionesModel_Estado(empresaid, sedeid, estado);
+
+        // Ordenar la lista de resultados en orden ascendente por fechaCreacion y luego invertir el orden para que sea descendente
+        resultados.sort(Comparator.comparing(RGSModel::getFechaCreacion).reversed());
+
+        return resultados;
     }
 
     //CRUD
@@ -65,6 +72,10 @@ public class RGS_Service {
     }
 
     public RGSModel saveRgs(RGSModel rgsModel){
+        Date fechaActual = new Date();
+
+        // Establece la fecha actual como la fecha de creación en el objeto RGSModel
+        rgsModel.setFechaCreacion(fechaActual);
         return rgsRepository.save(rgsModel);
     }
 
