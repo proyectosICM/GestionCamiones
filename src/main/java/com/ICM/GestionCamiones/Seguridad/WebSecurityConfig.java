@@ -58,7 +58,7 @@ public class WebSecurityConfig {
 
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT")); // Especificar los métodos HTTP permitidos
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Especificar los encabezados permitidos
-        configuration.setAllowCredentials(true); // Permitir el envío de credenciales
+        //configuration.setAllowCredentials(true); // Permitir el envío de credenciales
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
