@@ -61,6 +61,34 @@ public class RGS_Service {
         return resultados;
     }
 
+    public RGSModel pasarAPendiente (Long id){
+        Optional<RGSModel> existing = rgsRepository.findById(id);
+
+        if (existing.isPresent()){
+            if(existing.get().getEstado() == true){
+                RGSModel rgs= existing.get();
+                rgs.setEstado(false);
+                if(rgs.getCheckListCamionModel().getCamionesModel()!=null){
+                    Optional<CamionesModel> camionex = camionesRepository.findById(rgs.getCheckListCamionModel().getCamionesModel().getId());
+                    if(camionex.isPresent()){
+                        CamionesModel camion = camionex.get();
+                        camion.setEstado(false);
+                    }
+                }
+                if(rgs.getCheckListCarretaModel().getCamionesModel()!=null){
+                    Optional<CamionesModel> carretax = camionesRepository.findById(rgs.getCheckListCarretaModel().getCamionesModel().getId());
+                    if(carretax.isPresent()){
+                        CamionesModel carreta = carretax.get();
+                        carreta.setEstado(false);
+                    }
+                }
+
+                return rgsRepository.save(rgs);
+            }
+        }
+        return null;
+    }
+
     //CRUD
 
     public List<RGSModel> getAllRgsModel() {
