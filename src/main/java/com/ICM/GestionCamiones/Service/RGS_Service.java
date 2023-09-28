@@ -71,14 +71,14 @@ public class RGS_Service {
                 case "pendiente":
                     if (rgs.getEstado()) {
                         rgs.setEstado(false);
-                        actualizarEstadoCamiones(rgs, false);
+                        actualizarEstadoCamiones(rgs, false, false);
                         return rgsRepository.save(rgs);
                     }
                     break;
                 case "reparar":
                     if (!rgs.getEstado() && !rgs.getReparacion()) {
                         rgs.setReparacion(true);
-                        actualizarEstadoCamiones(rgs, true);
+                        actualizarEstadoCamiones(rgs, false, true);
                         return rgsRepository.save(rgs);
                     }
                     break;
@@ -86,7 +86,7 @@ public class RGS_Service {
                     if (!rgs.getEstado() && rgs.getReparacion()) {
                         rgs.setEstado(true);
                         rgs.setReparacion(false);
-                        actualizarEstadoCamiones(rgs, true);
+                        actualizarEstadoCamiones(rgs, true, false);
                         return rgsRepository.save(rgs);
                     }
                     break;
@@ -97,12 +97,12 @@ public class RGS_Service {
         return null;
     }
 
-    private void actualizarEstadoCamiones(RGSModel rgs, boolean estado) {
+    private void actualizarEstadoCamiones(RGSModel rgs, boolean estado, boolean reparar) {
         if (rgs.getCheckListCamionModel() != null && rgs.getCheckListCamionModel().getCamionesModel() != null) {
             Optional<CamionesModel> camionex = camionesRepository.findById(rgs.getCheckListCamionModel().getCamionesModel().getId());
             if (camionex.isPresent()) {
                 CamionesModel camion = camionex.get();
-                camion.setEnreparacion(estado);
+                camion.setEnreparacion(reparar);
                 camion.setEstado(estado);
                 camionesRepository.save(camion);
             }
@@ -112,7 +112,7 @@ public class RGS_Service {
             Optional<CamionesModel> carretax = camionesRepository.findById(rgs.getCheckListCarretaModel().getCamionesModel().getId());
             if (carretax.isPresent()) {
                 CamionesModel carreta = carretax.get();
-                carreta.setEnreparacion(estado);
+                carreta.setEnreparacion(reparar);
                 carreta.setEstado(estado);
                 camionesRepository.save(carreta);
             }
