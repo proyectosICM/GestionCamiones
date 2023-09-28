@@ -21,9 +21,9 @@ public class RGS_Controller {
         return rgsService.getxEmpresaAndxSede(empresa, sede, estado);
     }
 
-    @GetMapping("/pasar-pendiente/{id}")
-    public ResponseEntity<RGSModel> PasarPendiente(@PathVariable Long id){
-        RGSModel updatedRGS = rgsService.pasarAPendiente(id);
+    @PutMapping("/pasar-pendiente/{id}/{accion}")
+    public ResponseEntity<RGSModel> actualizarEstado(@PathVariable Long id, @PathVariable String accion){
+        RGSModel updatedRGS = rgsService.actualizarEstado(id, accion);
 
         if (updatedRGS != null) {
             return ResponseEntity.ok(updatedRGS);

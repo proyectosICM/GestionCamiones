@@ -61,32 +61,62 @@ public class RGS_Service {
         return resultados;
     }
 
-    public RGSModel pasarAPendiente (Long id){
+    public RGSModel actualizarEstado(Long id, String accion) {
         Optional<RGSModel> existing = rgsRepository.findById(id);
 
-        if (existing.isPresent()){
-            if(existing.get().getEstado() == true){
-                RGSModel rgs= existing.get();
-                rgs.setEstado(false);
-                if(rgs.getCheckListCamionModel().getCamionesModel()!=null){
-                    Optional<CamionesModel> camionex = camionesRepository.findById(rgs.getCheckListCamionModel().getCamionesModel().getId());
-                    if(camionex.isPresent()){
-                        CamionesModel camion = camionex.get();
-                        camion.setEstado(false);
-                    }
-                }
-                if(rgs.getCheckListCarretaModel().getCamionesModel()!=null){
-                    Optional<CamionesModel> carretax = camionesRepository.findById(rgs.getCheckListCarretaModel().getCamionesModel().getId());
-                    if(carretax.isPresent()){
-                        CamionesModel carreta = carretax.get();
-                        carreta.setEstado(false);
-                    }
-                }
+        if (existing.isPresent()) {
+            RGSModel rgs = existing.get();
 
-                return rgsRepository.save(rgs);
+            switch (accion) {
+                case "pendiente":
+                    if (rgs.getEstado()) {
+                        rgs.setEstado(false);
+                        actualizarEstadoCamiones(rgs, false);
+                        return rgsRepository.save(rgs);
+                    }
+                    break;
+                case "reparar":
+                    if (!rgs.getEstado() && !rgs.getReparacion()) {
+                        rgs.setReparacion(true);
+                        actualizarEstadoCamiones(rgs, true);
+                        return rgsRepository.save(rgs);
+                    }
+                    break;
+                case "habilitar":
+                    if (!rgs.getEstado() && rgs.getReparacion()) {
+                        rgs.setEstado(true);
+                        rgs.setReparacion(false);
+                        actualizarEstadoCamiones(rgs, true);
+                        return rgsRepository.save(rgs);
+                    }
+                    break;
+                default:
+                    break;
             }
         }
         return null;
+    }
+
+    private void actualizarEstadoCamiones(RGSModel rgs, boolean estado) {
+        if (rgs.getCheckListCamionModel() != null && rgs.getCheckListCamionModel().getCamionesModel() != null) {
+            Optional<CamionesModel> camionex = camionesRepository.findById(rgs.getCheckListCamionModel().getCamionesModel().getId());
+            if (camionex.isPresent()) {
+                CamionesModel camion = camionex.get();
+                camion.setEnreparacion(estado);
+                camion.setEstado(estado);
+                camionesRepository.save(camion);
+            }
+        }
+
+        if (rgs.getCheckListCarretaModel() != null && rgs.getCheckListCarretaModel().getCamionesModel() != null) {
+            Optional<CamionesModel> carretax = camionesRepository.findById(rgs.getCheckListCarretaModel().getCamionesModel().getId());
+            if (carretax.isPresent()) {
+                CamionesModel carreta = carretax.get();
+                carreta.setEnreparacion(estado);
+                carreta.setEstado(estado);
+                camionesRepository.save(carreta);
+            }
+        }
     }
 
     //CRUD
