@@ -52,6 +52,10 @@ public class RGS_Service {
     }
     */
 
+    public List<RGSModel> getAllRgsModel(Long empresa, Long sede,  Boolean estado, Boolean reparacion) {
+        return rgsRepository.findAll();
+    }
+
     public List<RGSModel> getxEmpresaAndxSede(Long empresaid, Long sedeid, Boolean estado) {
         List<RGSModel> resultados = rgsRepository.findByCheckListCamionModel_CamionesModel_EmpresasModel_IdAndCheckListCamionModel_CamionesModel_SedesModel_IdAndCheckListCamionModel_CamionesModel_Estado(empresaid, sedeid, estado);
 
@@ -60,6 +64,15 @@ public class RGS_Service {
 
         return resultados;
     }
+    public List<RGSModel> criteria(Long empresaid, Long sedeid, Boolean estado, Boolean reparacion) {
+        List<RGSModel> resultados = rgsRepository.findByCriteria(empresaid, sedeid, estado, reparacion);
+
+        // Ordenar la lista de resultados en orden ascendente por fechaCreacion y luego invertir el orden para que sea descendente
+        resultados.sort(Comparator.comparing(RGSModel::getFechaCreacion).reversed());
+
+        return resultados;
+    }
+
 
     public RGSModel actualizarEstado(Long id, String accion) {
         Optional<RGSModel> existing = rgsRepository.findById(id);

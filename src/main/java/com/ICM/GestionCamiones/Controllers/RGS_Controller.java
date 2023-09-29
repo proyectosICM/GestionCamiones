@@ -21,6 +21,13 @@ public class RGS_Controller {
         return rgsService.getxEmpresaAndxSede(empresa, sede, estado);
     }
 
+    @GetMapping("/criterios/{empresa}/{sede}/{estado}/{reparacion}")
+    public List<RGSModel> Criteria(@PathVariable Long empresa, @PathVariable Long sede, @PathVariable Boolean estado, @PathVariable Boolean reparacion){
+        return rgsService.criteria(empresa, sede, estado, reparacion);
+    }
+
+
+
     @PutMapping("/pasar-pendiente/{accion}/{id}")
     public ResponseEntity<RGSModel> actualizarEstado(@PathVariable Long id, @PathVariable String accion){
         RGSModel updatedRGS = rgsService.actualizarEstado(id, accion);
