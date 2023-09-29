@@ -1,6 +1,8 @@
 package com.ICM.GestionCamiones.Repositories;
 
+import com.ICM.GestionCamiones.Models.EmpresasModel;
 import com.ICM.GestionCamiones.Models.RGSModel;
+import com.ICM.GestionCamiones.Models.SedesModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -17,14 +19,8 @@ public interface RGS_Repository extends JpaRepository<RGSModel, Long> {
             "AND r.checkListCarretaModel.camionesModel.sedesModel.id = :sedeId " +
             "AND r.estado = :estado " +
             "AND r.reparacion = :reparacion)")
-    List<RGSModel> findByCriteria2(Long empresaId, Long sedeId, Boolean estado, Boolean reparacion);
-
-    @Query("SELECT r FROM RGSModel r " +
-            "WHERE (r.checkListCamionModel.camionesModel.empresasModel.id = :empresaId " +
-            "AND r.checkListCamionModel.camionesModel.sedesModel.id = :sedeId) " +
-            "OR (r.checkListCarretaModel.camionesModel.empresasModel.id = :empresaId " +
-            "AND r.checkListCarretaModel.camionesModel.sedesModel.id = :sedeId " +
-            "AND r.estado = :estado " +
-            "AND r.reparacion = :reparacion)")
     List<RGSModel> findByCriteria(Long empresaId, Long sedeId, Boolean estado, Boolean reparacion);
+
+
+    List<RGSModel> findByEmpresasModelAndSedesModelAndEstadoAndReparacion(EmpresasModel empresasModel, SedesModel sedesModel, Boolean estado, Boolean reparacion);
 }

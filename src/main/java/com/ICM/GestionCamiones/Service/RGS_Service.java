@@ -73,6 +73,20 @@ public class RGS_Service {
         return resultados;
     }
 
+    public List<RGSModel> listados(Long empresaid, Long sedeid, Boolean estado, Boolean reparacion) {
+        EmpresasModel empresa = new EmpresasModel();
+        empresa.setId(empresaid);
+
+        SedesModel sede = new SedesModel();
+        sede.setId(sedeid);
+
+        List<RGSModel> resultados = rgsRepository.findByEmpresasModelAndSedesModelAndEstadoAndReparacion(empresa, sede, estado, reparacion);
+
+        // Ordenar la lista de resultados en orden ascendente por fechaCreacion y luego invertir el orden para que sea descendente
+        resultados.sort(Comparator.comparing(RGSModel::getFechaCreacion).reversed());
+
+        return resultados;
+    }
 
     public RGSModel actualizarEstado(Long id, String accion) {
         Optional<RGSModel> existing = rgsRepository.findById(id);
@@ -158,6 +172,8 @@ public class RGS_Service {
             rgs.setCheckListCamionModel(rgsModel.getCheckListCamionModel());
             rgs.setCheckListExpresoModel(rgsModel.getCheckListExpresoModel());
             rgs.setCheckListCarretaModel(rgsModel.getCheckListCarretaModel());
+            rgs.setEmpresasModel(rgsModel.getEmpresasModel());
+            rgs.setSedesModel(rgsModel.getSedesModel());
             return rgsRepository.save(rgs);
         }
         return null;
