@@ -26,6 +26,11 @@ public class RGS_Controller {
         return rgsService.criteria(empresa, sede, estado, reparacion);
     }
 
+    @GetMapping("/listados-RGS/{empresa}/{sede}/{estado}/{reparacion}")
+    public List<RGSModel> ListadosRGS(@PathVariable Long empresa, @PathVariable Long sede, @PathVariable Boolean estado, @PathVariable Boolean reparacion){
+        return rgsService.listados(empresa, sede, estado, reparacion);
+    }
+
 
 
     @PutMapping("/gestion-estado/{accion}/{id}")
