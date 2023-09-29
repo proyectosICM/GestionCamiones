@@ -28,7 +28,7 @@ public class RGS_Controller {
 
 
 
-    @PutMapping("/pasar-pendiente/{accion}/{id}")
+    @PutMapping("/gestion-estado/{accion}/{id}")
     public ResponseEntity<RGSModel> actualizarEstado(@PathVariable Long id, @PathVariable String accion){
         RGSModel updatedRGS = rgsService.actualizarEstado(id, accion);
 
