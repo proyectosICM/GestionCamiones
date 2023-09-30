@@ -31,7 +31,7 @@ public class ReparacionesService {
     public List<ReparacionesModel> VerxRGS(Long rgsId){
         RGSModel rgs = new RGSModel();
         rgs.setId(rgsId);
-        return reparacionesRepository.findByRGSModel(rgs);
+        return reparacionesRepository.findByRgsModel(rgs);
     }
 
     /*

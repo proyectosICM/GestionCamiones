@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface ReparacionesRepository extends JpaRepository<ReparacionesModel, Long> {
 
-    List<ReparacionesModel> findByRGSModel(RGSModel rgsModel);
+    List<ReparacionesModel> findByRgsModel(RGSModel rgsModel);
 }
