@@ -27,7 +27,7 @@ public class ReparacionesController {
         return new ResponseEntity<>(reparaciones.get(), HttpStatus.OK);
     }
 
-    @GetMapping("/{rgs}")
+    @GetMapping("/xrgs/{rgs}")
     public ResponseEntity<List<ReparacionesModel>> VerxRGS(@PathVariable Long rgs){
         List<ReparacionesModel> reparaciones = reparacionesService.VerxRGS(rgs);
         if (!reparaciones.isEmpty()) {
