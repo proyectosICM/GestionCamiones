@@ -16,6 +16,8 @@ public class ReparacionesModel {
     @Column(unique = true, nullable = false)
     private Long id;
     private String titulo;
+
+    @Column(nullable = false)
     private String urlImage;
 
     @ManyToOne

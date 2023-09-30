@@ -26,6 +26,15 @@ public class ReparacionesController {
         Optional<ReparacionesModel> reparaciones = reparacionesService.GetByIdS(id);
         return new ResponseEntity<>(reparaciones.get(), HttpStatus.OK);
     }
+
+    @GetMapping("/{rgs}")
+    public ResponseEntity<List<ReparacionesModel>> VerxRGS(@PathVariable Long rgs){
+        List<ReparacionesModel> reparaciones = reparacionesService.VerxRGS(rgs);
+        if (!reparaciones.isEmpty()) {
+            return new ResponseEntity<>(reparaciones, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 /*
     @PostMapping
     public ResponseEntity<ReparacionesModel> SaveC (@RequestBody ReparacionesModel reparacionesModel){
