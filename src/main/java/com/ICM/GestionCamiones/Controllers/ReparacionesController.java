@@ -35,12 +35,12 @@ public class ReparacionesController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-/*
+
     @PostMapping
     public ResponseEntity<ReparacionesModel> SaveC (@RequestBody ReparacionesModel reparacionesModel){
         ReparacionesModel creparaciones = reparacionesService.SaveS(reparacionesModel);
-        return
+        return new ResponseEntity<>(creparaciones, HttpStatus.OK);
     }
 
- */
+
 }
