@@ -5,6 +5,8 @@ import com.ICM.GestionCamiones.Models.EmpresasModel;
 import com.ICM.GestionCamiones.Models.SedesModel;
 import com.ICM.GestionCamiones.Repositories.CamionesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,10 @@ import java.util.Optional;
 public class CamionesService {
     @Autowired
     CamionesRepository camionesRepository;
+
+    public Page<CamionesModel> findByEmpresasModelIdAndSedesModelIdAndEstado(Long empresasId, Long sedesId, Boolean estado, Pageable pageable) {
+        return camionesRepository.findByEmpresasModelIdAndSedesModelIdAndEstado(empresasId, sedesId, estado, pageable);
+    }
 
     public List<CamionesModel>ListarCamionesxEmpresaEst(EmpresasModel empresasModel, Boolean estado){
         return camionesRepository.findByEmpresasModelAndEstado(empresasModel, estado);

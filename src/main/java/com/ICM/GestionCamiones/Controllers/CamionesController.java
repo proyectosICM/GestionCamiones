@@ -5,6 +5,9 @@ import com.ICM.GestionCamiones.Models.EmpresasModel;
 import com.ICM.GestionCamiones.Models.SedesModel;
 import com.ICM.GestionCamiones.Service.CamionesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +20,18 @@ import java.util.Optional;
 public class CamionesController {
     @Autowired
     CamionesService camionesService;
+
+
+    @GetMapping("/camiones")
+    public Page<CamionesModel> getCamionesByCriteria(
+            @RequestParam("empresasId") Long empresasId,
+            @RequestParam("sedesId") Long sedesId,
+            @RequestParam("estado") Boolean estado,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        PageRequest pageable = PageRequest.of(page, size);
+        return camionesService.findByEmpresasModelIdAndSedesModelIdAndEstado(empresasId, sedesId, estado, pageable);
+    }
 
     @GetMapping("estado/{estado}/{id}")
     public List<CamionesModel> GetCamEmpxEst(@PathVariable Boolean estado, @PathVariable Long id){
