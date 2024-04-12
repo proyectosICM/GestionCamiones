@@ -4,11 +4,13 @@ import com.ICM.GestionCamiones.models.CamionesModel;
 import com.ICM.GestionCamiones.models.EmpresasModel;
 import com.ICM.GestionCamiones.models.SedesModel;
 import com.ICM.GestionCamiones.repositories.CamionesRepository;
+import com.ICM.GestionCamiones.utils.DirectoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +18,9 @@ import java.util.Optional;
 public class CamionesService {
     @Autowired
     CamionesRepository camionesRepository;
+
+    @Autowired
+    private DirectoryService directoryService;
 
     public Page<CamionesModel> findByEmpresasModelIdAndSedesModelIdAndEstado(Long empresasId, Long sedesId, Boolean estado, Pageable pageable) {
         return camionesRepository.findByEmpresasModelIdAndSedesModelIdAndEstado(empresasId, sedesId, estado, pageable);
@@ -41,7 +46,14 @@ public class CamionesService {
         return camionesRepository.findById(id);
     }
 
-    public CamionesModel createCamion(CamionesModel camionesModel){
+    public CamionesModel createCamion(CamionesModel camionesModel) {
+        Optional<CamionesModel> existingCamion = camionesRepository.findByPlaca(camionesModel.getPlaca());
+
+        if (existingCamion.isPresent()) {
+            throw new RuntimeException("Ya existe un camión con la misma placa");
+        }
+        directoryService.createDirectoryWithName(camionesModel.getEmpresasModel().getNombre()
+                + File.separator + camionesModel.getPlaca() );
         return camionesRepository.save(camionesModel);
     }
 

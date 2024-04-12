@@ -31,7 +31,7 @@ public class RGSModel {
 
     @ManyToOne
     @JoinColumn(name = "carreta", referencedColumnName = "id", nullable = false)
-    private CamionesModel carretaModel;
+    private CamionesModel carretasModel;
 
     @ManyToOne
     @JoinColumn(name = "sede", referencedColumnName = "id", nullable = false)
@@ -40,6 +40,8 @@ public class RGSModel {
     @ManyToOne
     @JoinColumn(name = "empresa", referencedColumnName = "id", nullable = false)
     private EmpresasModel empresasModel;
+
+    private Boolean enUso;
 
     /**
      * Timestamps for recording the creation and last update times of the record.

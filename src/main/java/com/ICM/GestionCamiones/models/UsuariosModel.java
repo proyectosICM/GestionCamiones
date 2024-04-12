@@ -37,10 +37,10 @@ public class UsuariosModel {
     @JoinColumn(name = "sede", referencedColumnName = "id", nullable = false)
     private SedesModel sedesModel;
 
-
+/*
     @ManyToOne
     @JoinColumn(name = "rgs", referencedColumnName = "id", nullable = true)
     private RGSModel rgsModel;
-
+*/
 
 }

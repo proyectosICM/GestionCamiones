@@ -29,6 +29,13 @@ public class RGS_Controller {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/findByUserAndEstado")
+    public ResponseEntity<RGSModel> findByUsuariosModelIdAndEnUso(@RequestParam Long usuarioId, @RequestParam Boolean enUso) {
+        Optional<RGSModel> rgsOptional = rgsService.findByUsuariosModelIdAndEnUso(usuarioId, enUso);
+        return rgsOptional.map(rgs -> new ResponseEntity<>(rgs, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
     @PostMapping
     public ResponseEntity<RGSModel> createRGS(@RequestBody RGSModel rgs) {
         RGSModel createdRGS = rgsService.createRGS(rgs);

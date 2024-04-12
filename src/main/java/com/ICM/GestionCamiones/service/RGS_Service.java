@@ -29,6 +29,10 @@ public class RGS_Service {
         return rgsRepository.findById(id);
     }
 
+    public Optional<RGSModel> findByUsuariosModelIdAndEnUso(Long usuarioId, Boolean enUso) {
+        return rgsRepository.findByUsuariosModelIdAndEnUso(usuarioId, enUso);
+    }
+
     public RGSModel createRGS(RGSModel rgs) {
         return rgsRepository.save(rgs);
     }
