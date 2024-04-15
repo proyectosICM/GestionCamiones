@@ -26,6 +26,10 @@ public class FallasImagen_Model {
     private UsuariosModel usuariosModel;
 
     @ManyToOne
+    @JoinColumn(name = "empresa", referencedColumnName = "id", nullable = false)
+    private UsuariosModel empresaModel;
+
+    @ManyToOne
     @JoinColumn(name = "checklistCamion", referencedColumnName = "id", nullable = true)
     private CheckListCamionModel checklistCamion;
 
