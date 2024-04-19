@@ -5,8 +5,13 @@ import com.ICM.GestionCamiones.repositories.CamionesRepository;
 import com.ICM.GestionCamiones.repositories.CheckListCamionRepository;
 import com.ICM.GestionCamiones.repositories.RGS_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+
+import org.springframework.data.domain.Pageable;
+
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +38,25 @@ public class RGS_Service {
         return rgsRepository.findByUsuariosModelIdAndEnUso(usuarioId, enUso);
     }
 
+    public Page<RGSModel> findByCheckListCamionModelCamionesModelId(Long camionId, Pageable pageable) {
+        Optional<CamionesModel> vehicleData = camionesRepository.findById(camionId);
+        if (vehicleData.isPresent()) {
+            if (vehicleData.get().getTiposCModel().getId() == 1L) {
+                return rgsRepository.findByCheckListCamionModelCamionesModelIdOrderByUpdatedAtDesc(camionId, pageable);
+            } else if (vehicleData.get().getTiposCModel().getId() == 2L) {
+                return rgsRepository.findByCheckListCarretaModelCamionesModelIdOrderByUpdatedAtDesc(camionId, pageable);
+            }
+        }
+        throw new RuntimeException("No se encontró un vehículo con el ID especificado: " + camionId);
+    }
+
     public RGSModel createRGS(RGSModel rgs) {
+        Optional<RGSModel> existingRGS = findByUsuariosModelIdAndEnUso(rgs.getUsuariosModel().getId(), true);
+        if (existingRGS.isPresent()) {
+            // Cambiar el estado de enUso del RGS existente a false
+            existingRGS.get().setEnUso(false);
+            rgsRepository.save(existingRGS.get());
+        }
         return rgsRepository.save(rgs);
     }
 

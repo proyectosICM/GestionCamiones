@@ -9,12 +9,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "CheckListExpreso")
-public class CheckListExpresoModel {
+@Table(name = "CheckListExpresoCamion")
+public class ChecklistExpresoCamionModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "Camion", referencedColumnName = "id", nullable = false)
+    private CamionesModel camionesModel;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario", referencedColumnName = "id", nullable = false)
+    private UsuariosModel usuariosModel;
 
     //Cabina
     private Boolean pruebaArranque;

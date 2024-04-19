@@ -31,7 +31,7 @@ public class FallasImagen_Model {
 
     @ManyToOne
     @JoinColumn(name = "checklistCamion", referencedColumnName = "id", nullable = true)
-    private CheckListCamionModel checklistCamion;
+    private CheckListCamionModel checkListCamionModel;
 
     @ManyToOne
     @JoinColumn(name = "checklistCarreta", referencedColumnName = "id", nullable = true)

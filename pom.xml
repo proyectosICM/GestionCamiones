@@ -17,6 +17,17 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>5.2.3</version> <!-- Reemplaza con la última versión disponible -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>5.2.3</version> <!-- Reemplaza con la última versión disponible -->
+		</dependency>
 		<!-- JPA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -91,9 +91,9 @@ public class WebSecurityConfig {
                 .logout().disable()  // Deshabilitar la funcionalidad de logout
                 .exceptionHandling().disable()
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/hola").permitAll();
+                    auth.requestMatchers("/descargar-excel").permitAll();
                     auth.requestMatchers("/api/camiones").permitAll();
-                    auth.requestMatchers("/unprotected").permitAll();
+                    auth.requestMatchers("/cargar-excel").permitAll();
                     auth.requestMatchers("/unprotected").permitAll();
                     auth.requestMatchers("/redirigido").permitAll();
                     auth.requestMatchers("/api/imagen/**").permitAll();

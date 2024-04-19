@@ -26,6 +26,10 @@ public class CamionesService {
         return camionesRepository.findByEmpresasModelIdAndSedesModelIdAndEstado(empresasId, sedesId, estado, pageable);
     }
 
+    public Page<CamionesModel> findByEmpresasModelIdAndSedesModelIdAndEstadoAndTiposCModelId(Long empresasId, Long sedesId, Boolean estado, Long tiposCId,Pageable pageable) {
+        return camionesRepository.findByEmpresasModelIdAndSedesModelIdAndEstadoAndTiposCModelId(empresasId, sedesId, estado, tiposCId, pageable);
+    }
+
     public List<CamionesModel>ListarCamionesxEmpresaEst(EmpresasModel empresasModel, Boolean estado){
         return camionesRepository.findByEmpresasModelAndEstado(empresasModel, estado);
     }

@@ -25,13 +25,14 @@ public class RGSModel {
     @JoinColumn(name = "usuario", referencedColumnName = "id", nullable = false)
     private UsuariosModel usuariosModel;
 
+    //(cascade = CascadeType.ALL)
     @ManyToOne
-    @JoinColumn(name = "camion", referencedColumnName = "id", nullable = false)
-    private CamionesModel camionesModel;
+    @JoinColumn(name = "camioncl", referencedColumnName = "id", nullable = false)
+    private CheckListCamionModel checkListCamionModel;
 
     @ManyToOne
-    @JoinColumn(name = "carreta", referencedColumnName = "id", nullable = false)
-    private CamionesModel carretasModel;
+    @JoinColumn(name = "carretacl", referencedColumnName = "id", nullable = false)
+    private CheckListCarretaModel checkListCarretaModel;
 
     @ManyToOne
     @JoinColumn(name = "sede", referencedColumnName = "id", nullable = false)

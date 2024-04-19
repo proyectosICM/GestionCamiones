@@ -21,8 +21,8 @@ public class CamionesController {
     CamionesService camionesService;
 
 
-    @GetMapping("/camiones")
-    public Page<CamionesModel> getCamionesByCriteria(
+    @GetMapping("/byEmpresaAndSedeAndEstado")
+    public Page<CamionesModel> findByEmpresasModelIdAndSedesModelIdAndEstado(
             @RequestParam("empresasId") Long empresasId,
             @RequestParam("sedesId") Long sedesId,
             @RequestParam("estado") Boolean estado,
@@ -30,6 +30,18 @@ public class CamionesController {
             @RequestParam(defaultValue = "10") int size) {
         PageRequest pageable = PageRequest.of(page, size);
         return camionesService.findByEmpresasModelIdAndSedesModelIdAndEstado(empresasId, sedesId, estado, pageable);
+    }
+
+    @GetMapping("/byEmpresaAndSedeAndEstadoAndTipo")
+    public Page<CamionesModel> findByEmpresasModelIdAndSedesModelIdAndEstadoAndTiposCModelId(
+            @RequestParam("empresasId") Long empresasId,
+            @RequestParam("sedesId") Long sedesId,
+            @RequestParam("estado") Boolean estado,
+            @RequestParam("tiposCId") Long tiposCId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        PageRequest pageable = PageRequest.of(page, size);
+        return camionesService.findByEmpresasModelIdAndSedesModelIdAndEstadoAndTiposCModelId(empresasId, sedesId, estado, tiposCId, pageable);
     }
 
     @GetMapping("estado/{estado}/{id}")

@@ -17,6 +17,7 @@ public interface CamionesRepository extends JpaRepository<CamionesModel, Long> {
     List<CamionesModel> findByEmpresasModelAndEstado(EmpresasModel empresasModel, Boolean estado);
     List<CamionesModel> findByEmpresasModelAndSedesModelAndEstado(EmpresasModel empresasModel, SedesModel sedesModel, Boolean estado);
     Page<CamionesModel> findByEmpresasModelIdAndSedesModelIdAndEstado(Long empresasId, Long sedesId, Boolean estado, Pageable pageable);
+    Page<CamionesModel> findByEmpresasModelIdAndSedesModelIdAndEstadoAndTiposCModelId(Long empresasId, Long sedesId, Boolean estado, Long tiposCId, Pageable pageable);
     List<CamionesModel> findByEmpresasModelAndSedesModelAndEstadoAndEnreparacion(EmpresasModel empresasModel, SedesModel sedesModel, Boolean estado, Boolean Enreparacion);
 
 }
