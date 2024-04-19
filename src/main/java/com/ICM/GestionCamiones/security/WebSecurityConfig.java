@@ -94,7 +94,7 @@ public class WebSecurityConfig {
                     auth.requestMatchers("/descargar-excel").permitAll();
                     auth.requestMatchers("/api/camiones").permitAll();
                     auth.requestMatchers("/cargar-excel").permitAll();
-                    auth.requestMatchers("/unprotected").permitAll();
+                    auth.requestMatchers("/cargar-excel2").permitAll();
                     auth.requestMatchers("/redirigido").permitAll();
                     auth.requestMatchers("/api/imagen/**").permitAll();
                     auth.requestMatchers("/saludof").permitAll();
