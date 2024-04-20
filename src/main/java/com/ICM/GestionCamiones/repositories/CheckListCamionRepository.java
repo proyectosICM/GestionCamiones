@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface CheckListCamionRepository extends JpaRepository<CheckListCamionModel, Long> {
     List<CheckListCamionModel> findByCamionesModel(CamionesModel camionesModel);
+    List<CheckListCamionModel> findByCamionesModelEmpresasModelId(Long id);
 }

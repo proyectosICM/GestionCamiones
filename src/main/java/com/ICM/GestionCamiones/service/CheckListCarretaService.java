@@ -16,6 +16,9 @@ public class CheckListCarretaService {
     public List<CheckListCarretaModel> GetAllChecklistCarreta(){
         return checkListCarretaRepository.findAll();
     }
+    public List<CheckListCarretaModel> findByCamionesModelEmpresasModelId(Long id) {
+        return checkListCarretaRepository.findByCamionesModelEmpresasModelId(id);
+    }
 
     public Optional<CheckListCarretaModel> GetById(Long id){
         return checkListCarretaRepository.findById(id);

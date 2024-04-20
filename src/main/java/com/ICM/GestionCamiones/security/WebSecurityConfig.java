@@ -95,8 +95,8 @@ public class WebSecurityConfig {
                     auth.requestMatchers("/api/camiones").permitAll();
                     auth.requestMatchers("/cargar-excel").permitAll();
                     auth.requestMatchers("/cargar-excel2").permitAll();
-                    auth.requestMatchers("/redirigido").permitAll();
-                    auth.requestMatchers("/api/imagen/**").permitAll();
+                    auth.requestMatchers("/cargar-excel-datos").permitAll();
+                    auth.requestMatchers("/cargar-excel-datos2").permitAll();
                     auth.requestMatchers("/saludof").permitAll();
                     auth.requestMatchers("/get-ip").permitAll();
                     auth.requestMatchers("/login").permitAll();

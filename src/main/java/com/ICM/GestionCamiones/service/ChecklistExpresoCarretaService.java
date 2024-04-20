@@ -20,6 +20,9 @@ public class ChecklistExpresoCarretaService {
     public List<ChecklistExpresoCarretaModel> GetAllCle(){
         return checklistExpresoCarretaRepository.findAll();
     }
+    public List<ChecklistExpresoCarretaModel> findByCamionesModelEmpresasModelId(Long id) {
+        return checklistExpresoCarretaRepository.findByCamionesModelEmpresasModelId(id);
+    }
     public Page<ChecklistExpresoCarretaModel> findByCamionesModelId(Long camionesId, Pageable pageable) {
         return checklistExpresoCarretaRepository.findByCamionesModelId(camionesId, pageable);
     }

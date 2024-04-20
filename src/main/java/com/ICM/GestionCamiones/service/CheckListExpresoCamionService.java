@@ -1,5 +1,6 @@
 package com.ICM.GestionCamiones.service;
 
+import com.ICM.GestionCamiones.models.CheckListCarretaModel;
 import com.ICM.GestionCamiones.models.ChecklistExpresoCamionModel;
 import com.ICM.GestionCamiones.repositories.CheckListExpresoCamionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,11 @@ public class CheckListExpresoCamionService {
     public List<ChecklistExpresoCamionModel> GetAllCle(){
         return checkListExpresoCamionRepository.findAll();
     }
+
+    public List<ChecklistExpresoCamionModel> findByCamionesModelEmpresasModelId(Long id) {
+        return checkListExpresoCamionRepository.findByCamionesModelEmpresasModelId(id);
+    }
+
     public Page<ChecklistExpresoCamionModel> findByCamionesModelId(Long camionesId, Pageable pageable) {
         return checkListExpresoCamionRepository.findByCamionesModelId(camionesId, pageable);
     }

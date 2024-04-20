@@ -19,7 +19,9 @@ public class CheckListCamionService {
         camionesModel.setId(id);
         return checkListCamionRepository.findByCamionesModel(camionesModel);
     }
-
+    public List<CheckListCamionModel> findByCamionesModelEmpresasModelId(Long id) {
+        return checkListCamionRepository.findByCamionesModelEmpresasModelId(id);
+    }
     //CRUD
     public List<CheckListCamionModel> GetAllCheckLists(){
         return checkListCamionRepository.findAll();
