@@ -97,6 +97,7 @@ public class WebSecurityConfig {
                     auth.requestMatchers("/cargar-excel2").permitAll();
                     auth.requestMatchers("/cargar-excel-datos").permitAll();
                     auth.requestMatchers("/cargar-excel-datos2").permitAll();
+                    auth.requestMatchers("/cargar-excel-datos-libros").permitAll();
                     auth.requestMatchers("/saludof").permitAll();
                     auth.requestMatchers("/get-ip").permitAll();
                     auth.requestMatchers("/login").permitAll();

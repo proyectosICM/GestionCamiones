@@ -30,11 +30,13 @@ public class ChecklistExpresoCamionModel {
     private Boolean presionFrenos;
     private Boolean presionSuspencion;
     private Boolean cargaAlternador;
+
     private Boolean frenoMotor;
     private Boolean giroTimon;
     private Boolean tensionEmbrague;
     private Boolean funcionamientoClaxon;
     private Boolean alarmaRetroceso;
+
     private Boolean cinturonSeguridad;
     private Boolean espejosLunas;
     private Boolean estadoVidrios;
@@ -48,11 +50,13 @@ public class ChecklistExpresoCamionModel {
     private Boolean nivelRefrigerante;
     private Boolean nivelFluidoCajaD;
     private Boolean filtroAireMotor;
+
     private Boolean filtroSeparadorCombustible;
     private Boolean holguraDireccion;
     private Boolean ductoAdmision;
     private Boolean ductoEscape;
     private Boolean presionAire;
+
     private Boolean vidaBateria;
     private Boolean filtroRecirculacionAire;
     private Boolean estanqueidadMotor;
@@ -64,21 +68,25 @@ public class ChecklistExpresoCamionModel {
     private Boolean suspensionDelantera;
     private Boolean descarteFugaAire;
     private Boolean descarteFugaAceite;
+
     private Boolean suspensionPosterior;
     private Boolean inspeccionZapatas;
     private Boolean estadoRachet;
     private Boolean suspensionNeumatica;
     private Boolean tandem;
+
     private Boolean chasisYPuentes;
     private Boolean estadoSilenciador;
     private Boolean tornamesa;
     private Boolean manparones;
     private Boolean visualNeumaticos;
+
     private Boolean visualEmisores;
     private Boolean funcionamientoLuces;
     private Boolean cortinasFurgon;
     private Boolean cintaReflectiva;
     private Boolean placasRodaje;
+
     private Boolean seguroCargar;
     private Boolean mecanismoCortinas;
     private Boolean estructuraSemiremolque;
