@@ -37,5 +37,11 @@ public class FallasImagen_Model {
     @JoinColumn(name = "checklistCarreta", referencedColumnName = "id", nullable = true)
     private CheckListCarretaModel checkListCarretaModel;
 
+    @ManyToOne
+    @JoinColumn(name = "checklistCamionExpreso", referencedColumnName = "id", nullable = true)
+    private ChecklistExpresoCamionModel checklistExpresoCamionModel;
 
+    @ManyToOne
+    @JoinColumn(name = "checklistCarretaExpreso", referencedColumnName = "id", nullable = true)
+    private ChecklistExpresoCarretaModel checklistExpresoCarretaModel;
 }

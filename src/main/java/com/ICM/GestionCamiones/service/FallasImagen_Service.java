@@ -44,6 +44,17 @@ public class FallasImagen_Service {
         return fallasImagenRepository.findById(id);
     }
 
+    public List<?> findByEmpresaModelIdAndCheckListCamionModelIdOrCheckListCarretaModelId(Long empresaId, String dt, Long dato1, Long dato2) {
+        if ("conductor".equals(dt)) {
+            return fallasImagenRepository.findByEmpresaModelIdAndCheckListCamionModelIdOrCheckListCarretaModelId(empresaId, dato1, dato2);
+        } else if ("expreso".equals(dt)) {
+            return fallasImagenRepository.findByEmpresaModelIdAndChecklistExpresoCamionModelIdOrChecklistExpresoCarretaModelId(empresaId, dato1, dato2);
+        } else {
+            throw new IllegalArgumentException("El parámetro 'dt' debe ser 'conductor' o 'expreso'.");
+        }
+    }
+
+
     public String saveImage(MultipartFile file, Long empresaId, Long camionId) throws IOException {
         Optional<EmpresasModel> empresaData = empresasRepository.findById(empresaId);
         Optional<CamionesModel> camionData = camionesRepository.findById(camionId);
@@ -54,8 +65,8 @@ public class FallasImagen_Service {
             String fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
 
             // Construir la ruta base del archivo utilizando el nombre de la empresa y la placa del camión
-            String basePath = fileImagen + "/" + empresaData.get().getNombre() + "/" + camionData.get().getPlaca() + "/";
-
+           //  String basePath = fileImagen + "/" + empresaData.get().getNombre() + "/" + camionData.get().getPlaca() + "/";
+            String basePath = fileImagen + "/" + empresaData.get().getNombre() + "/";
             // Verificar si el directorio base existe, si no, crearlo
             File baseDirectory = new File(basePath);
             if (!baseDirectory.exists()) {

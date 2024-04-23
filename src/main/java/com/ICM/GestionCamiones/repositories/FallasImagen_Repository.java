@@ -9,5 +9,7 @@ import java.util.List;
 
 @Repository
 public interface FallasImagen_Repository extends JpaRepository<FallasImagen_Model, Long> {
+    List<FallasImagen_Model> findByEmpresaModelIdAndCheckListCamionModelIdOrCheckListCarretaModelId(Long empresaId, Long checkListCamionModelId, Long checkListCarretaModelId);
+    List<FallasImagen_Model> findByEmpresaModelIdAndChecklistExpresoCamionModelIdOrChecklistExpresoCarretaModelId(Long empresaId, Long checklistExpresoCamionModelId, Long checkListExpresoCarretaModelId);
 
 }

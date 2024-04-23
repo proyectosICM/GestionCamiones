@@ -583,10 +583,7 @@ public class ExcelDataController {
             rowNum = escribirPropiedadEnColumna(checkListCarretaE.getCortinasPuertasMamparon(), sheet4, rowNumCarretaE, 14);
             rowNum = escribirPropiedadEnColumna(checkListCarretaE.getFurgo(), sheet4, rowNumCarretaE, 15);
             rowNumCarretaE++; // Incrementamos el contador de filas para las carretas
-
-
         }
-
 
         // Escribir los cambios en el flujo de salida
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
