@@ -26,6 +26,9 @@ public class RGS_Service {
     @Autowired
     CamionesRepository camionesRepository;
 
+    @Autowired
+    FallasImagen_Service fallasImagenService;
+
     public List<RGSModel> findAll() {
         return rgsRepository.findAll();
     }
@@ -52,9 +55,11 @@ public class RGS_Service {
 
     public RGSModel createRGS(RGSModel rgs) {
         Optional<RGSModel> existingRGS = findByUsuariosModelIdAndEnUso(rgs.getUsuariosModel().getId(), true);
+        // Optional<FallasImagen_Model> fallas =
         if (existingRGS.isPresent()) {
             // Cambiar el estado de enUso del RGS existente a false
             existingRGS.get().setEnUso(false);
+            fallasImagenService.editclImage(rgs.getCheckListCamionModel().getId(), rgs.getCheckListCarretaModel().getId());
             rgsRepository.save(existingRGS.get());
         }
         return rgsRepository.save(rgs);

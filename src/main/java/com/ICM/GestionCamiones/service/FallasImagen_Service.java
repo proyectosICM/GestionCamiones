@@ -44,12 +44,15 @@ public class FallasImagen_Service {
         return fallasImagenRepository.findById(id);
     }
 
-    public List<?> findByEmpresaModelIdAndCheckListCamionModelIdOrCheckListCarretaModelId(Long empresaId, String dt, Long dato1, Long dato2) {
+    public List<FallasImagen_Model> findByEmpresaModelIdAndCheckListCamionModelIdOrCheckListCarretaModelId(Long empresaId, String dt, Long dato1, Long dato2) {
         if ("conductor".equals(dt)) {
             return fallasImagenRepository.findByEmpresaModelIdAndCheckListCamionModelIdOrCheckListCarretaModelId(empresaId, dato1, dato2);
-        } else if ("expreso".equals(dt)) {
-            return fallasImagenRepository.findByEmpresaModelIdAndChecklistExpresoCamionModelIdOrChecklistExpresoCarretaModelId(empresaId, dato1, dato2);
-        } else {
+        } else if ("expresoCamion".equals(dt)) {
+            return fallasImagenRepository.findByEmpresaModelIdAndChecklistExpresoCamionModelId(empresaId, dato1);
+        } else if ("expresoCarreta".equals(dt)){
+            return fallasImagenRepository.findByEmpresaModelIdAndChecklistExpresoCarretaModelId(empresaId, dato1);
+        }
+        else {
             throw new IllegalArgumentException("El parámetro 'dt' debe ser 'conductor' o 'expreso'.");
         }
     }
@@ -112,5 +115,22 @@ public class FallasImagen_Service {
             return fallasImagenRepository.save(errorImage);
         }
         return null;
+    }
+
+    public FallasImagen_Model editclImage(Long id, Long clcarretaId) {
+        // Busca todos los registros con el ID de checklistExpresoCamionModel igual a id
+        List<FallasImagen_Model> existing = fallasImagenRepository.findByCheckListCamionModelId(id);
+
+        // Itera sobre la lista de registros encontrados
+        for (FallasImagen_Model fallasImagen : existing) {
+            // Actualiza el campo checklistCarretaModel con el ID proporcionado
+            fallasImagen.getCheckListCarretaModel().setId(clcarretaId);
+        }
+
+        // Guarda los cambios en la base de datos
+        fallasImagenRepository.saveAll(existing);
+
+        // Devuelve el primer objeto de la lista
+        return existing.isEmpty() ? null : existing.get(0);
     }
 }

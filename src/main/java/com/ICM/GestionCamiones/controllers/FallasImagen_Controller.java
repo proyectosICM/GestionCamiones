@@ -2,6 +2,7 @@ package com.ICM.GestionCamiones.controllers;
 
 import com.ICM.GestionCamiones.models.EmpresasModel;
 import com.ICM.GestionCamiones.models.FallasImagen_Model;
+import com.ICM.GestionCamiones.models.UsuariosModel;
 import com.ICM.GestionCamiones.service.EmpresasService;
 import com.ICM.GestionCamiones.service.FallasImagen_Service;
 import org.springframework.core.io.InputStreamResource;
@@ -18,7 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.nio.file.Paths;
 
@@ -62,34 +65,31 @@ public class FallasImagen_Controller {
     public ResponseEntity<?> findByEmpresaModelIdAndCheckListCamionModelIdOrCheckListCarretaModelId(
             @RequestParam Long empresaId,
             @RequestParam String dt,
-            @RequestParam Long dato1,
-            @RequestParam Long dato2
+            @RequestParam(required = false) Long dato1,
+            @RequestParam(required = false) Long dato2
     ) {
         try {
-            List<?> result = fallasImagenService.findByEmpresaModelIdAndCheckListCamionModelIdOrCheckListCarretaModelId(empresaId, dt, dato1, dato2);
-            Optional<?> empresaData = empresasService.findById(empresaId);
+            // Obtener la lista de objetos FallasImagen_Model y la información de la empresa
+            List<FallasImagen_Model> result = fallasImagenService.findByEmpresaModelIdAndCheckListCamionModelIdOrCheckListCarretaModelId(empresaId, dt, dato1, dato2);
+            Optional<EmpresasModel> empresaData = empresasService.findById(empresaId);
 
-
-            // Convertir la lista de objetos FallasImagen_Model a una lista de nombres de imágenes
-
-            List<String> imageNames = result.stream()
-                    .map(obj -> {
-                        if (obj instanceof FallasImagen_Model) {
-                            FallasImagen_Model imagen = (FallasImagen_Model) obj;
-                            return imagen.getUrlImage();
-                        } else {
-                            return null; // O manejar de otra manera si se espera otro tipo de objeto
-                        }
+            // Crear una lista de objetos JSON que contengan los nombres de las imágenes y las observaciones
+            List<Map<String, String>> imageInfoList = result.stream()
+                    .map(imagen -> {
+                        Map<String, String> imageInfo = new HashMap<>();
+                        imageInfo.put("observacion", imagen.getObservacion());
+                        imageInfo.put("urlImage", imagen.getUrlImage());
+                        return imageInfo;
                     })
                     .collect(Collectors.toList());
-            return ResponseEntity.ok(imageNames);
+
+            return ResponseEntity.ok(imageInfoList);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocurrió un error en el servidor.");
         }
     }
-
     @GetMapping("/images")
     public ResponseEntity<Resource> serveImage(@RequestParam String filename, @RequestParam Long company) {
         try {
